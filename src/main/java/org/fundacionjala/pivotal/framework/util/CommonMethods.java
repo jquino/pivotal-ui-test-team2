@@ -26,9 +26,7 @@ import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACES_ENDP
 
 
 /**
- * This class groups the generic methods
- *
- * @ Mijhail Villarroel
+ * This class groups the generic methods.
  */
 public final class CommonMethods {
 
@@ -36,14 +34,17 @@ public final class CommonMethods {
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
 
+    /**
+     * Class constructor.
+     */
     private CommonMethods() {
     }
 
     /**
-     * This Method return false o true if the element be present.
+     * This Method return false o true if the element is present.
      *
-     * @param webElement element
-     * @return True or false
+     * @param webElement the web element to be verified
+     * @return true or false
      */
     public static boolean isElementPresent(WebElement webElement) {
         try {
@@ -57,10 +58,10 @@ public final class CommonMethods {
     }
 
     /**
-     * This method set a Web Element
+     * This method sets the Web Element.
      *
-     * @param webElement
-     * @param text
+     * @param webElement the object to be catched and the replaced
+     * @param text the value that will be filled on the web element
      */
     public static void setWebElement(WebElement webElement, String text) {
         WEB_DRIVER_WAIT.until(ExpectedConditions.visibilityOf(webElement));
@@ -69,9 +70,9 @@ public final class CommonMethods {
     }
 
     /**
-     * This Method do click in element
+     * This Method do clicks the element.
      *
-     * @param webElement
+     * @param webElement the object to be clicked.
      */
     public static void clickWebElement(WebElement webElement) {
         WEB_DRIVER_WAIT.until(ExpectedConditions.elementToBeClickable(webElement));
@@ -79,10 +80,11 @@ public final class CommonMethods {
     }
 
     /**
-     * This Method set a check box element
+     * This Method sets the state of
+     * the checkbox element.
      *
-     * @param webElement
-     * @param enable
+     * @param webElement the checkbox to be set
+     * @param enable the state to be configured
      */
     public static void setCheckBox(WebElement webElement, boolean enable) {
         if (enable) {
@@ -93,9 +95,10 @@ public final class CommonMethods {
     }
 
     /**
-     * This Method set a unchecked box element
+     * This Method sets the unchecked state to
+     * the checkbox element.
      *
-     * @param webElement
+     * @param webElement the checkbox to be unchecked
      */
     private static void unCheckBox(WebElement webElement) {
         if (!webElement.isSelected()) {
@@ -104,9 +107,10 @@ public final class CommonMethods {
     }
 
     /**
-     * This Method set a check box element
+     * This Method sets the checked state to
+     * the checkbox element.
      *
-     * @param webElement
+     * @param webElement the checkbox to be checked
      */
     private static void checkBox(WebElement webElement) {
         if (webElement.isSelected()) {
@@ -115,10 +119,10 @@ public final class CommonMethods {
     }
 
     /**
-     * Select 1 element the list
+     * Selects one element present on the list.
      *
-     * @param webElementSelect
-     * @param element
+     * @param webElementSelect the web element to be selected
+     * @param element the value type to be selected
      */
     public static void selectAElementComboBox(WebElement webElementSelect, String element) {
         Select oSelect = new Select(webElementSelect);
@@ -126,17 +130,17 @@ public final class CommonMethods {
     }
 
     /**
-     * Convert a Select element
+     * This method converts a Select element.
      *
-     * @param webElement
-     * @return
+     * @param webElement the element to be converted
+     * @return the selected element
      */
     public static Select convertASelect(WebElement webElement) {
         return new Select(webElement);
     }
 
     /**
-     * Delete all Project create by API
+     * Deletes all Projects created by the API.
      */
     public static void deleteAllProjects() {
         ArrayList<Map<String, ?>> jsonAsArrayList = JsonPath.from(getRequest(PROJECTS_ENDPOINT).asString()).get("");
@@ -148,7 +152,7 @@ public final class CommonMethods {
     }
 
     /**
-     * Delete all Project workspace by API
+     * Deletes all Project workspace created by the API.
      */
     public static void deleteAllWorkspaces() {
         ArrayList<Map<String, ?>> jsonAsArrayList = JsonPath.from(getRequest(WORKSPACES_ENDPOINT).asString()).get("");
@@ -160,7 +164,7 @@ public final class CommonMethods {
     }
 
     /**
-     * Delete all account
+     * Deletes all accounts created by the API.
      */
     public static void deleteAccounts() {
         DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/accounts");
@@ -181,6 +185,10 @@ public final class CommonMethods {
         DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
     }
 
+    /**
+     * This method closes the browser used.
+     * @param message the string to be displayed
+     */
     public static void quitProgram(String message) {
         LOGGER.info("Element null " + message);
         Runtime.getRuntime().runFinalization();

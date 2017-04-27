@@ -1,8 +1,7 @@
 package org.fundacionjala.pivotal.framework.util;
 
 /**
- * This class will let us to use constants variables through the classes.
- * Created by brunobarrios on 7/13/2016.
+ * This class will let us use constants variables through the classes.
  */
 public final class Constants {
 
@@ -42,6 +41,9 @@ public final class Constants {
 
     public static final String ELEMENT_COULD_NOT_BE_FOUND = "The element could not be found";
 
+    /**
+     * Class constructor.
+     */
     private Constants() {
     }
 }

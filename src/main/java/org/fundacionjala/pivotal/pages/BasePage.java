@@ -8,6 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 
+/**
+ * Abstract class that acts as a template for the rest of subclasses
+ * that will be invoked for Pivotal Tracker project.
+ */
 public abstract class BasePage {
 
     protected WebDriver driver;
@@ -16,6 +20,9 @@ public abstract class BasePage {
 
     protected Actions action;
 
+    /**
+     * Class constructor.
+     */
     public BasePage() {
         driver = DriverManager.getInstance().getDriver();
         wait = new WebDriverWait(driver, WAIT_TIME);
@@ -23,6 +30,11 @@ public abstract class BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * Method that removes the possibility of having
+     * a modal view opened and have the desired components
+     * resent to be clicked or selected.
+     */
     public void refreshPage() {
         driver.navigate().refresh();
     }

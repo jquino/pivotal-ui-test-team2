@@ -1,7 +1,7 @@
 package org.fundacionjala.pivotal.pages.project;
 
 /**
- * Created by brunobarrios on 7/14/2016.
+ * Enumerator for the steps to create a new project.
  */
 public enum ProjectSteps {
 

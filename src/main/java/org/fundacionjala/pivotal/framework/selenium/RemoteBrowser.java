@@ -11,9 +11,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 /**
- * This class initialize the Remote Selenium Web Driver given the required values in properties file
- *
- * @author Henrry Salinas.
+ * This class initializes the Remote Selenium Web Driver
+ * given the required values in properties file.
  */
 public class RemoteBrowser implements IDriver {
 

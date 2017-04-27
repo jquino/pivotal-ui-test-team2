@@ -9,7 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 
 /**
- * @ Mijhail Villarroel.
+ * Class that lets us confirm the deletion
+ * of the project on the browser popup.
  */
 public class DeleteProjectAlert extends BasePage {
 
@@ -19,6 +20,12 @@ public class DeleteProjectAlert extends BasePage {
     @FindBy(id = "confirm_delete")
     private WebElement deleteProjectBtn;
 
+    /**
+     * Method that clicks the delete button inside the
+     * project settings.
+     *
+     * @return the Dashboard instance
+     */
     public Dashboard clickDeleteBtn() {
         wait.until(ExpectedConditions.visibilityOf(deleteAlertContainer));
         clickWebElement(deleteProjectBtn);

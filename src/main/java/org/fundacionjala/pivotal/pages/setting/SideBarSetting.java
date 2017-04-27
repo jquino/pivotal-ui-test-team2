@@ -7,7 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 
 /**
- * Created by mijhailvillarroel on 7/11/2016.
+ * Class that represents the side bar settings placed
+ * at the left of the Settings screen.
  */
 public class SideBarSetting extends BasePage {
 
@@ -26,6 +27,12 @@ public class SideBarSetting extends BasePage {
     @FindBy(xpath = "//a[text()='Export CSV']")
     private WebElement linkExportCSV;
 
+    /**
+     * Method that clicks the button that directs
+     * to General settings page.
+     *
+     * @return the instance of the general settings form
+     */
     public GeneralSettingForm clickGeneralSetting() {
         clickWebElement(linkGeneralSettings);
         return new GeneralSettingForm();

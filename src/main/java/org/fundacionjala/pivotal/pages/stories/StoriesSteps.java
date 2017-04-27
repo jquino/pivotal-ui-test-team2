@@ -1,9 +1,7 @@
 package org.fundacionjala.pivotal.pages.stories;
 
 /**
- * This enum contains the parameters of a story in pivotal tracker
- *
- * @author RosarioGarcia
+ * This enum contains the parameters of a story inside pivotal tracker.
  */
 public enum StoriesSteps {
 

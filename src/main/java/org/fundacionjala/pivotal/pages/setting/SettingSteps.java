@@ -1,5 +1,8 @@
 package org.fundacionjala.pivotal.pages.setting;
 
+/**
+ * Enum class to set the setting steps.
+ */
 public enum SettingSteps {
 
     DESCRIPTION,

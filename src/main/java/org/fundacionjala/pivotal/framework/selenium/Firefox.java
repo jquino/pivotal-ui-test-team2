@@ -4,9 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
- * This class initialize the Firefox Selenium Web Driver
- *
- * @author Henrry Salinas.
+ * This class initializes the Firefox Selenium Web Driver.
  */
 public class Firefox implements IDriver {
 

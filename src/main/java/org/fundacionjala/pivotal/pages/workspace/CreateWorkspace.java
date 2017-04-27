@@ -10,9 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
- * Created by Daniel Gonzales
- * <p>
- * CreateWorkspace is the class to create a new Workspace
+ * CreateWorkspace is the class to create a new Workspace.
  */
 public class CreateWorkspace extends BasePage {
 
@@ -32,9 +30,9 @@ public class CreateWorkspace extends BasePage {
     private WebElement getCreateWorkspaceContainer;
 
     /**
-     * Method to do click on the button "Create Workspace" on the Form
+     * Method that clicks the button "Create Workspace" on the Form.
      *
-     * @return Workspaces
+     * @return the workspace instance
      */
     public Workspace clickCreateWorkspaceLink() {
         wait.until(ExpectedConditions.visibilityOf(getCreateWorkspaceContainer));
@@ -43,17 +41,17 @@ public class CreateWorkspace extends BasePage {
     }
 
     /**
-     * Method to do click on the button "Cancel" on the Form
+     * Method that clicks the button "Cancel" on the Form.
      */
     public void clickCancelCreateWorkspaceLink() {
         cancelCreateWorkspaceLink.click();
     }
 
     /**
-     * Method that to insert a name into Workspace Name field
+     * Method that inserts a name into Workspace Name field.
      *
-     * @param workspaceName
-     * @return CreateWorkspace
+     * @param workspaceName the given parameter to insert
+     * @return this CreateWorkspace instance
      */
     public CreateWorkspace setWorkspaceName(String workspaceName) {
         workspaceNameTextField.sendKeys(workspaceName);
@@ -61,21 +59,22 @@ public class CreateWorkspace extends BasePage {
     }
 
     /**
-     * Method that to permit set values necesary to create a new Workspace
+     * Method that permits set values necessary to create a new Workspace.
      *
-     * @param values
+     * @param values values map to refer to the workspace
      * @return a Map with the values of the workspace created
      */
     public Map<WorkspaceSteps, IAutomationStep> getStrategyStepMap(Map<WorkspaceSteps, Object> values) {
         final Map<WorkspaceSteps, IAutomationStep> strategyMap = new EnumMap<>(WorkspaceSteps.class);
-        strategyMap.put(WorkspaceSteps.WORKSPACE_NAME, () -> setWorkspaceName(String.valueOf(values.get(WorkspaceSteps.WORKSPACE_NAME))));
+        strategyMap.put(WorkspaceSteps.WORKSPACE_NAME, () -> setWorkspaceName(String.valueOf(values.get(WorkspaceSteps
+                        .WORKSPACE_NAME))));
         return strategyMap;
     }
 
     /**
-     * Method that get a mesage when a workspace try to be created with empty name
+     * Method that gets a message when a workspace try to be created with empty name.
      *
-     * @return
+     * @return the test of the message
      */
     public String getMessageWorkspaceNameEmpty() {
         return messageWorkspaceNameEmpty.getText();

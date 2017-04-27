@@ -10,6 +10,9 @@ import io.restassured.response.Response;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_BRACKETS;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BRACKETS;
 
+/**
+ *  It configures the methods to map ids and responses.
+ */
 public final class Mapper {
 
     private static final String REGEX_KEY = "\\[(.*?)\\.";
@@ -28,14 +31,17 @@ public final class Mapper {
 
     private static final Map<String, Response> RESPONSE_VALUES = new HashMap<>();
 
+    /**
+     * Class constructor.
+     */
     private Mapper() {
     }
 
     /**
-     * Method to format the endpoint with the ids specified
+     * Method that formats the endpoint with the ids specified.
      *
-     * @param endPoint: endpoint with Key and Value to replace
-     * @return: the new endpoint with ids
+     * @param endPoint endpoint with Key and Value to replace
+     * @return the new endpoint with ids
      */
     public static String mapEndpoint(String endPoint) {
         String result = endPoint;
@@ -54,10 +60,23 @@ public final class Mapper {
         return result;
     }
 
+    /**
+     * Method that adds the response given the key and the response.
+     *
+     * @param key the key value to with the response desired
+     * @param response  the response object to be updated
+     */
     public static void addResponse(String key, Response response) {
         RESPONSE_VALUES.put(key, response);
     }
 
+    /**
+     * Method that obtains all paramaters from the project
+     * given a specific endpoint.
+     *
+     * @param endPoint endpoint with Key and Value to be used
+     * @return the endpoint properties
+     */
     public static String getPropertiesProject(String endPoint) {
         String result = endPoint;
         if (result.contains(REGEX_HALF_BRACKET)) {
@@ -74,10 +93,10 @@ public final class Mapper {
     }
 
     /**
-     * Method to get the property specified from response saved
+     * It formats the response with the property specified.
      *
      * @param property property to get
-     * @return property
+     * @return the new response
      */
     public static String mapResponse(String property) {
         String result = property;

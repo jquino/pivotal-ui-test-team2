@@ -7,9 +7,7 @@ import org.fundacionjala.pivotal.pages.BasePage;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 
 /**
- * This class create a form to create a new Workspace
- *
- * @author Daniel Gonzales
+ * This class creates a form to create a new Workspace.
  */
 public class DeleteWorkspace extends BasePage {
 
@@ -19,10 +17,20 @@ public class DeleteWorkspace extends BasePage {
     @FindBy(className = "cancel")
     private WebElement cancelDeleteLink;
 
+    /**
+     * Method that cancels the delete process once
+     * the delete link is pressed.
+     */
     public void clickCancelDeleteLink() {
         cancelDeleteLink.click();
     }
 
+    /**
+     * Method that completes the delete process
+     * once the delete link is pressed.
+     *
+     * @return the dashboard instance
+     */
     public Dashboard clickConfirmDeleteLink() {
         confirmDeleteLink.click();
         return new Dashboard();

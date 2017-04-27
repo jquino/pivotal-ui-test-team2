@@ -19,7 +19,8 @@ import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_T
 
 
 /**
- * Created by Daniel
+ * Class that represents the main workspace page with all
+ * its contents to be used.
  */
 public class Workspace extends BasePage {
 
@@ -41,17 +42,31 @@ public class Workspace extends BasePage {
     @FindBy(className = "table")
     private WebElement panelContainerProjects;
 
+    /**
+     * Class constructor.
+     */
     public Workspace() {
 
         sideBarWorkspace = new SideBarWorkspace();
         toolBarWorkspace = new ToolBarWorkspace();
     }
 
+    /**
+     * Method that exit from the workspace and
+     * return to the dashboard instance.
+     *
+     * @return the dashboard instance
+     */
     public Dashboard clickReturnDashboardLink() {
         returnDashboardLink.click();
         return new Dashboard();
     }
 
+    /**
+     * Method that returns as the workspace name.
+     *
+     * @return the value of the workspace name
+     */
     public String getProjectIntoWorkspaceNameText() {
         String projectIntoWorkspaceName = "";
         try {
@@ -65,6 +80,12 @@ public class Workspace extends BasePage {
         return projectIntoWorkspaceName;
     }
 
+    /**
+     * Method that returns the workspace id
+     * from the url of the page.
+     *
+     * @return the workspace id
+     */
     public String getIdWorkspace() {
         String url = driver.getCurrentUrl();
         String idWorkspace = "";
@@ -76,16 +97,32 @@ public class Workspace extends BasePage {
         return idWorkspace;
     }
 
+    /**
+     * Method that returns the asserted map
+     * of steps for workspace creation.
+     *
+     * @return the asserted map
+     */
     public Map<WorkspaceSteps, Object> getAssertionMap() {
         Map<WorkspaceSteps, Object> assertionMap = new EnumMap<>(WorkspaceSteps.class);
         assertionMap.put(WorkspaceSteps.WORKSPACE_NAME, toolBarWorkspace.getWorkspaceNameText());
         return assertionMap;
     }
 
+    /**
+     * Method that returns the side bar workspace instance.
+     *
+     * @return the side bar workspace instance
+     */
     public SideBarWorkspace getSideWorkspace() {
         return sideBarWorkspace;
     }
 
+    /**
+     * Method that returns the tool bar workspace instance.
+     *
+     * @return the tool bar workspace instance
+     */
     public ToolBarWorkspace getToolBarWorkspace() {
         return toolBarWorkspace;
     }

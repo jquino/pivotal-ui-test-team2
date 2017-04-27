@@ -18,7 +18,7 @@ import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebEle
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 
 /**
- * @BrunoBarrios
+ * Class that represents the options inside a create project page.
  */
 public class CreateProject extends BasePage {
 
@@ -58,11 +58,24 @@ public class CreateProject extends BasePage {
     @FindBy(className = "tc-account-selector__create-account-icon")
     private WebElement createAccountOption;
 
+    /**
+     * Method that puts the project name to the new project
+     * to be created.
+     *
+     * @param projectName the new project name
+     * @return This same instance with the parameter updated
+     */
     public CreateProject setProjectName(String projectName) {
         newProjectName.sendKeys(projectName);
         return this;
     }
 
+    /**
+     * Method that enables the creation of an account name.
+     *
+     * @param accountName the account name to be verified
+     * @return this same instance with the parameter updated
+     */
     public CreateProject setAccountDropDown(String accountName) {
         accountDropDown.click();
         if (!isAccountNamePresent(accountName)) {
@@ -73,11 +86,22 @@ public class CreateProject extends BasePage {
         return this;
     }
 
+    /**
+     * Method that enables to click the data sample checkbox.
+     *
+     * @param isCheckBoxEnable boolean value to verify the checkbox
+     * @return this same instance with the parameter updated
+     */
     public CreateProject clickDataSampleCheckBox(String isCheckBoxEnable) {
         setCheckBox(projectPrivateRadioBtn, Boolean.parseBoolean(isCheckBoxEnable));
         return this;
     }
 
+    /**
+     * Method that creates a new account.
+     * @param accountName the new account name
+     * @return this same instance with the parameter updated
+     */
     private CreateProject createAccount(String accountName) {
         LOGGER.info("creating account");
         createAccountOption.click();
@@ -85,6 +109,12 @@ public class CreateProject extends BasePage {
         return this;
     }
 
+    /**
+     * Method to verify that the account name exists.
+     *
+     * @param accountName the parameter to check if exists
+     * @return the boleean value of this verification
+     */
     private boolean isAccountNamePresent(String accountName) {
         boolean answer;
         try {
@@ -97,10 +127,19 @@ public class CreateProject extends BasePage {
         return answer;
     }
 
+    /**
+     * Method that verifies that the radio button is visible.
+     */
     public void checkProjectVisible() {
         projectPublicRadioBtn.click();
     }
 
+    /**
+     * Method that completes the create project process sending the
+     * parameters and then displaying the Project instance.
+     *
+     * @return the project instance created
+     */
     public Project clickCreateProject() {
         try {
             clickWebElement(createNewProjectBtn);
@@ -119,6 +158,10 @@ public class CreateProject extends BasePage {
 
     }
 
+    /**
+     * Method that verifies the project title message is
+     * free of error messages.
+     */
     private void verifyErrorMessagesOfCreateProject() {
         if (blankProjectNameMessage.isDisplayed()) {
             LOGGER.info("title message: " + blankProjectNameMessage.getText());
@@ -130,33 +173,75 @@ public class CreateProject extends BasePage {
         }
     }
 
+    /**
+     * Method that verifies if the project form is displayed.
+     *
+     * @return the boleean value for the verification
+     */
     public boolean createProjectFormIsdisplayed() {
         return newProjectName.isDisplayed() && accountDropDown.isDisplayed() && createNewProjectBtn.isDisplayed();
     }
 
+    /**
+     * Method that returns as to the dashboard instance page in the
+     * case we cancel the new project creation.
+     *
+     * @return the Dashboard page instance
+     */
     public Dashboard clickCancelCreateProjectBtn() {
         clickWebElement(cancelCreateProjectBtn);
         return new Dashboard();
     }
 
+    /**
+     * Method that allows to the project to be visible clicking
+     * the checkbox and verifying if it is enabled.
+     *
+     * @param isCheckBoxEnable the boleean value that let the
+     *                         checkbox knows if it is enabled
+     */
     public void clickMakeProjectVisibleCheckBox(String isCheckBoxEnable) {
         setCheckBox(projectPublicRadioBtn, Boolean.parseBoolean(isCheckBoxEnable));
     }
 
+    /**
+     * Method that defines the strategy given the step values.
+     *
+     * @param values enum values mapped by steps and objects
+     * @return the strategy Map instance
+     */
     public Map<Enum, IAutomationStep> getStrategyStepMap(Map<ProjectSteps, Object> values) {
         final Map<Enum, IAutomationStep> strategyMap = new HashMap<>();
 
-        strategyMap.put(ProjectSteps.PROJECT_TITLE, () -> setProjectName(String.valueOf(values.get(ProjectSteps.PROJECT_TITLE))));
-        strategyMap.put(ProjectSteps.PROJECT_ACCOUNT, () -> setAccountDropDown(String.valueOf(values.get(ProjectSteps.PROJECT_ACCOUNT))));
-        strategyMap.put(ProjectSteps.PROJECT_VISIBLE, () -> clickMakeProjectVisibleCheckBox(String.valueOf(values.get(ProjectSteps.PROJECT_VISIBLE))));
-        strategyMap.put(ProjectSteps.PROJECT_SAMPLE_DATA, () -> clickDataSampleCheckBox(String.valueOf(values.get(ProjectSteps.PROJECT_SAMPLE_DATA))));
+        strategyMap.put(ProjectSteps
+                   .PROJECT_TITLE, () -> setProjectName(String
+                   .valueOf(values.get(ProjectSteps.PROJECT_TITLE))));
+        strategyMap.put(ProjectSteps
+                   .PROJECT_ACCOUNT, () -> setAccountDropDown(String
+                   .valueOf(values.get(ProjectSteps.PROJECT_ACCOUNT))));
+        strategyMap.put(ProjectSteps
+                   .PROJECT_VISIBLE, () -> clickMakeProjectVisibleCheckBox(String
+                   .valueOf(values.get(ProjectSteps.PROJECT_VISIBLE))));
+        strategyMap.put(ProjectSteps
+                   .PROJECT_SAMPLE_DATA, () -> clickDataSampleCheckBox(String
+                   .valueOf(values.get(ProjectSteps.PROJECT_SAMPLE_DATA))));
         return strategyMap;
     }
 
+    /**
+     * Method that returns the account message.
+     *
+     * @return the account message
+     */
     public String getAccountMessage() {
         return accountMessage;
     }
 
+    /**
+     * Method that retrieves the project title message.
+     *
+     * @return the project title message
+     */
     public String getProjectTitleMessage() {
         return projectTitleMessage;
     }

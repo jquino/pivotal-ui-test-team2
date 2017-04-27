@@ -13,7 +13,8 @@ import static org.fundacionjala.pivotal.framework.util.Constants.ELEMENT_COULD_N
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
 
 /**
- * Created by DanielGonzales
+ * Class that represents the Workspace page
+ * tool bar with its elements to be used.
  */
 public class ToolBarWorkspace extends BasePage {
 
@@ -28,11 +29,21 @@ public class ToolBarWorkspace extends BasePage {
     @FindBy(className = "page_header_container")
     private WebElement toolBarContainer;
 
+    /**
+     * Mehtod that lead us to the workspace page options.
+     *
+     * @return the setting workspace instance
+     */
     public SettingWorkspace clickSettingsWorkspaceLink() {
         settingsWorkspaceLink.click();
         return new SettingWorkspace();
     }
 
+    /**
+     * Method that returns the workspace name.
+     *
+     * @return the value of the workspace name
+     */
     public String getWorkspaceNameText() {
         String workspaceName = "";
         try {
