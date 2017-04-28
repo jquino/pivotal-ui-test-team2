@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
+import org.fundacionjala.pivotal.api.WorkspaceManager;
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.Login;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
@@ -9,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static org.fundacionjala.pivotal.api.WorkspaceManager.deleteWorkspaceUsingAPI;
+import static org.fundacionjala.pivotal.api.WorkspaceManager.createWorkspace;
 import static org.fundacionjala.pivotal.framework.util.Constants.RED_COLOR;
 import static org.testng.Assert.assertEquals;
 
@@ -17,6 +18,7 @@ import static org.testng.Assert.assertEquals;
  * Created by jose rioja on 4/27/2017.
  */
 public class AddWorkSpacesTests {
+    private final String WORKSPACE_NAME_TO_DELETE = "Workspace_To_Delete";
     private Dashboard dashboardPage;
     private Workspace workspace;
     private SoftAssert softAssert;
@@ -25,11 +27,21 @@ public class AddWorkSpacesTests {
      * Before method.
      */
     @BeforeMethod
-    public void beforeMethod() {
+    public void setUp() {
         // Given
         dashboardPage = Login.loginAsPrimaryUser();
         dashboardPage.clickWorkspacesTab();
         softAssert = new SoftAssert();
+    }
+
+    /**
+     * Method to create a workspace via API and login to the site and goes to Workspace tab.
+     */
+    @BeforeMethod(groups = {"DeleteWorkspace"})
+    public void setUpCreateWorkspace() {
+        // Given
+        createWorkspace(WORKSPACE_NAME_TO_DELETE);
+        setUp();
     }
 
     /**
@@ -99,13 +111,28 @@ public class AddWorkSpacesTests {
         softAssert.assertAll();
     }
 
+
+    @Test(groups = {"DeleteWorkspace"})
+    public void testDeleteWorkspace() {
+        // When
+        workspace = dashboardPage.clickOnWorkspaceName(WORKSPACE_NAME_TO_DELETE);
+        SettingWorkspace settingWorkspace = workspace.getToolBarWorkspace().clickSettingsWorkspaceLink();
+        DeleteWorkspace deleteWorkspace = settingWorkspace.clickDeleteWorkspaceLink();
+        dashboardPage = deleteWorkspace.clickConfirmDeleteLink();
+
+        // Then
+        String actualMessage = dashboardPage.getMessageDeleteWorkspace();
+        String expectedMessage = String.format("%s %s", WORKSPACE_NAME_TO_DELETE, "was successfully deleted.");
+        assertEquals(actualMessage, expectedMessage);
+    }
+
     /**
      * After groups method.
      */
     @AfterGroups("Functional")
     public void deleteWorkspace() {
         String workspaceId = workspace.getIdWorkspace();
-        deleteWorkspaceUsingAPI(workspaceId);
+        WorkspaceManager.deleteWorkspace(workspaceId);
     }
 
     /**

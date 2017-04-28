@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.ELEMENT_COULD_NOT_BE_FOUND;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
 
@@ -35,7 +36,7 @@ public class ToolBarWorkspace extends BasePage {
      * @return the setting workspace instance
      */
     public SettingWorkspace clickSettingsWorkspaceLink() {
-        settingsWorkspaceLink.click();
+        clickWebElement(settingsWorkspaceLink);
         return new SettingWorkspace();
     }
 

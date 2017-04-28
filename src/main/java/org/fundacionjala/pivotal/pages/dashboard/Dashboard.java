@@ -61,6 +61,8 @@ public class Dashboard extends BasePage {
     @FindBy(xpath = "//span[text() = 'Workspaces']")
     private WebElement workspacesTab;
 
+    private final String workspaceNameLocator = "//a[text() = '%s']";
+
     private static final int TIMEOUT = 45;
     private static final int POLLING = 5;
 
@@ -188,8 +190,8 @@ public class Dashboard extends BasePage {
      * @return the Accounts instance
      */
     public Accounts selectAccountOption() {
-        userNameText.click();
-        accountOption.click();
+        clickWebElement(userNameText);
+        clickWebElement(accountOption);
         return new Accounts();
     }
 
@@ -246,5 +248,16 @@ public class Dashboard extends BasePage {
      */
     public void clickWorkspacesTab() {
         clickWebElement(workspacesTab);
+    }
+
+    /**
+     * Method to click on a workspace name of the list.
+     * @param workspaceName Name of the workspace.
+     * @return Workspace instance.
+     */
+    public Workspace clickOnWorkspaceName(String workspaceName) {
+        By by = By.xpath(String.format(workspaceNameLocator, workspaceName));
+        clickWebElement(by);
+        return new Workspace();
     }
 }

@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.fundacionjala.pivotal.pages.BasePage;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
+
 /**
  * This class creates a form to create a new Workspace.
  */
@@ -22,7 +24,7 @@ public class DeleteWorkspace extends BasePage {
      * the delete link is pressed.
      */
     public void clickCancelDeleteLink() {
-        cancelDeleteLink.click();
+        clickWebElement(cancelDeleteLink);
     }
 
     /**
@@ -32,7 +34,7 @@ public class DeleteWorkspace extends BasePage {
      * @return the dashboard instance
      */
     public Dashboard clickConfirmDeleteLink() {
-        confirmDeleteLink.click();
+        clickWebElement(confirmDeleteLink);
         return new Dashboard();
     }
 }

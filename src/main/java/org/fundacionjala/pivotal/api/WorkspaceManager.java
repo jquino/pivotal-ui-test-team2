@@ -21,7 +21,7 @@ public final class WorkspaceManager {
      * @param name Workspace name.
      * @return ID of the created workspace.
      */
-    public static int createWorkspaceUsingAPI(String name) {
+    public static int createWorkspace(String name) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("name", name);
         return RequestManager.postRequest(WORKSPACES_ENDPOINT, parameters).body().jsonPath().get("id");
@@ -31,7 +31,7 @@ public final class WorkspaceManager {
      * Method to delete a workspace via API.
      * @param workspaceId ID of the workspace to delete.
      */
-    public static void deleteWorkspaceUsingAPI(String workspaceId) {
+    public static void deleteWorkspace(String workspaceId) {
         StringBuilder endpoint = new StringBuilder(WORKSPACES_ENDPOINT);
         endpoint.append(workspaceId);
         RequestManager.deleteRequest(endpoint.toString());

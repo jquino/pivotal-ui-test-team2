@@ -5,9 +5,7 @@ import java.util.Map;
 
 import io.restassured.path.json.JsonPath;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -31,6 +29,7 @@ import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACES_ENDP
 public final class CommonMethods {
 
     private static final WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
+    private static final WebDriver WEB_DRIVER = getInstance().getDriver();
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
 
@@ -70,13 +69,23 @@ public final class CommonMethods {
     }
 
     /**
-     * This Method do clicks the element.
+     * This Method do clicks the web element.
      *
      * @param webElement the object to be clicked.
      */
     public static void clickWebElement(WebElement webElement) {
         WEB_DRIVER_WAIT.until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
+    }
+
+    /**
+     * This Method do clicks the by element.
+     *
+     * @param byElement the object to be clicked.
+     */
+    public static void clickWebElement(By byElement) {
+        WEB_DRIVER_WAIT.until(ExpectedConditions.elementToBeClickable(byElement));
+        WEB_DRIVER.findElement(byElement).click();
     }
 
     /**
