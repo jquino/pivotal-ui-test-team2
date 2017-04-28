@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
+import org.fundacionjala.pivotal.api.WorkspaceManager;
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.Login;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
@@ -9,7 +10,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static org.fundacionjala.pivotal.api.WorkspaceManager.deleteWorkspaceUsingAPI;
 import static org.fundacionjala.pivotal.framework.util.Constants.RED_COLOR;
 import static org.testng.Assert.assertEquals;
 
@@ -105,7 +105,7 @@ public class AddWorkSpacesTests {
     @AfterGroups("Functional")
     public void deleteWorkspace() {
         String workspaceId = workspace.getIdWorkspace();
-        deleteWorkspaceUsingAPI(workspaceId);
+        WorkspaceManager.deleteWorkspace(Integer.parseInt(workspaceId));
     }
 
     /**

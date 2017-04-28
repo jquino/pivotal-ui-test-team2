@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class SettingWorkspace extends BasePage {
 
+    public static final String VALUE = "value";
     @FindBy(id = "workspace_name")
     private WebElement workspaceNameText;
 
@@ -69,6 +70,14 @@ public class SettingWorkspace extends BasePage {
      */
     public String getMessageChangesWorkspace() {
         return messageChangesWorkspace.getText();
+    }
+
+    /**
+     * Returns the name of the workspace.
+     * @return the value of the workspace name.
+     */
+    public String getWorkspaceName() {
+        return workspaceNameText.getAttribute(VALUE);
     }
 
 }

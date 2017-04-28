@@ -201,7 +201,7 @@ public class Dashboard extends BasePage {
      * @return a new Workspace instance object
      */
     public Workspace clickNameWorkspaceLink(String nameWorkspace) {
-        WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'" + nameWorkspace + "')]"));
+        WebElement nameWorkspaceLink = driver.findElement(By.xpath(String.format("//a[.= '%s']", nameWorkspace)));
         nameWorkspaceLink.click();
         return new Workspace();
     }
