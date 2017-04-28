@@ -31,7 +31,7 @@ public final class WorkspaceManager {
      * Method to delete a workspace via API.
      * @param workspaceId ID of the workspace to delete.
      */
-    public static void deleteWorkspace(String workspaceId) {
+    public static void deleteWorkspace(int workspaceId) {
         StringBuilder endpoint = new StringBuilder(WORKSPACES_ENDPOINT);
         endpoint.append(workspaceId);
         RequestManager.deleteRequest(endpoint.toString());

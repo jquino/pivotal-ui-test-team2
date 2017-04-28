@@ -132,7 +132,7 @@ public class AddWorkSpacesTests {
     @AfterGroups("Functional")
     public void deleteWorkspace() {
         String workspaceId = workspace.getIdWorkspace();
-        WorkspaceManager.deleteWorkspace(workspaceId);
+        WorkspaceManager.deleteWorkspace(Integer.parseInt(workspaceId));
     }
 
     /**
