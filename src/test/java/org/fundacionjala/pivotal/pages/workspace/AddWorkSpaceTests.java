@@ -4,7 +4,6 @@ import org.fundacionjala.pivotal.api.WorkspaceManager;
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.Login;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

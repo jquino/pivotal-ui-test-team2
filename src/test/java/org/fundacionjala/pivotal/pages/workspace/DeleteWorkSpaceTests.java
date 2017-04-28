@@ -1,9 +1,7 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
-import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.Login;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -14,7 +12,7 @@ import static org.testng.Assert.assertEquals;
  * Created by jose rioja on 4/27/2017.
  */
 public class DeleteWorkSpaceTests {
-    private final String WORKSPACE_NAME_TO_DELETE = "Workspace_To_Delete";
+    private static final String WORKSPACE_NAME_TO_DELETE = "Workspace_To_Delete";
     private Dashboard dashboardPage;
 
     /**
@@ -28,6 +26,9 @@ public class DeleteWorkSpaceTests {
         dashboardPage.clickWorkspacesTab();
     }
 
+    /**
+     * Test to verify that a workspace is deleted.
+     */
     @Test
     public void testDeleteWorkspace() {
         // When
