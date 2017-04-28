@@ -1,11 +1,15 @@
 package org.fundacionjala.pivotal.pages;
 
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
-import org.fundacionjala.pivotal.framework.util.CommonMethods;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
+
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
+import static org.fundacionjala.pivotal.framework.util.Constants.DASHBOARD_PAGE;
+import static org.fundacionjala.pivotal.framework.util.PageTransporter.goToURL;
 
 /**
  * The class represents the Pivotal Tracker
@@ -31,7 +35,7 @@ public class Login extends BasePage {
      * @param username the entry to be used as username
      */
     public void setUserNameTestField(String username) {
-        CommonMethods.setWebElement(userNameTestField, username);
+        setWebElement(userNameTestField, username);
     }
 
     /**
@@ -41,7 +45,7 @@ public class Login extends BasePage {
      * @param password the entry to be used as password
      */
     public void setPasswordTestField(String password) {
-        CommonMethods.setWebElement(passwordTestField, password);
+        setWebElement(passwordTestField, password);
     }
 
     /**
@@ -61,6 +65,8 @@ public class Login extends BasePage {
             login.clickSignInButton();
             login.setPasswordTestField(password);
             return login.clickSignInButton();
+        } else {
+            goToURL(DASHBOARD_PAGE);
         }
         return dashboard;
     }
@@ -72,7 +78,7 @@ public class Login extends BasePage {
      * main user page.
      */
     public Dashboard clickSignInButton() {
-        CommonMethods.clickWebElement(signInBtn);
+        clickWebElement(signInBtn);
         return new Dashboard();
     }
 

@@ -48,8 +48,18 @@ tasks.withType(Pmd) {
 }
 
 test {
-    exclude 'org/fundacionjala/pivotal/**'
+
+    useTestNG()
+
     testLogging {
         events "PASSED", "STARTED", "FAILED", "SKIPPED"
     }
+
+    systemProperty 'email', email
+    systemProperty 'password', password
+    systemProperty 'browser', browser
+    systemProperty 'url', url
+    systemProperty 'urlApi', urlApi
+    systemProperty 'apiToken', apiToken
+    systemProperty 'proxyHost', proxyHost
 }

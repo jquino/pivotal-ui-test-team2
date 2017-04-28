@@ -32,18 +32,19 @@ public class Dashboard extends BasePage {
     private static final Logger LOGGER = Logger.getLogger(Dashboard.class.getName());
 
     private static final String CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG = "Create Workspace Button was not found";
+    private static final String CREATE_PROJECT_BUTTON_WAS_NOT_FOUND_MSG = "Create Project Button was not found";
 
-    @FindBy(className = "tc_dropdown_name")
+    @FindBy(css = ".tc_profile_dropdown .tc_dropdown_name")
     private WebElement userNameText;
 
     @FindBy(css = "a[href='/accounts']")
     private WebElement accountOption;
 
     @FindBy(id = "create_new_project_button")
-    private WebElement createProjectLink;
+    private WebElement createProjectButton;
 
-    @FindBy(id = "create_new_workspace_button")
-    private WebElement createWorkspaceLink;
+    @FindBy(css = "[data-aid = 'create-workspace-button']")
+    private WebElement createWorkspaceButton;
 
     @FindBy(id = "notice")
     private WebElement deleteMessageText;
@@ -54,9 +55,32 @@ public class Dashboard extends BasePage {
     @FindBy(id = "my_workspaces")
     private WebElement workspaceContainer;
 
-    private static final int TIMEOUT = 45;
+    @FindBy(xpath = "//span[text() = 'Projects']")
+    private WebElement projectsTab;
 
+    @FindBy(xpath = "//span[text() = 'Workspaces']")
+    private WebElement workspacesTab;
+
+    private static final int TIMEOUT = 45;
     private static final int POLLING = 5;
+
+    /**
+     * Method that changes the timeout and clicks on Create Project or
+     * Workspace button and restore to default timeout.
+     * @param webElement Create Project or Workspace button web element.
+     * @param errorMessage Error message when the web element was not found.
+     */
+    private void clickOnCreateProjectOrWorkspaceButton(WebElement webElement, String errorMessage) {
+        try {
+            wait.withTimeout(TIMEOUT, SECONDS);
+            clickWebElement(webElement);
+        } catch (NoSuchElementException e) {
+            LOGGER.warn(errorMessage, e);
+            throw new NoSuchElementException(errorMessage, e);
+        } finally {
+            wait.withTimeout(WAIT_TIME, SECONDS);
+        }
+    }
 
     /**
      * Method that clicks the link to create a project
@@ -64,16 +88,8 @@ public class Dashboard extends BasePage {
      *
      * @return the CreateReport instance
      */
-    public CreateProject clickCreateProjectLink() {
-        try {
-            wait.withTimeout(TIMEOUT, SECONDS);
-            clickWebElement(createProjectLink);
-        } catch (NoSuchElementException e) {
-            LOGGER.warn("Create Project link was not found", e);
-            throw new NoSuchElementException("Create Project link was not found", e);
-        } finally {
-            wait.withTimeout(WAIT_TIME, SECONDS);
-        }
+    public CreateProject clickCreateProjectButton() {
+        clickOnCreateProjectOrWorkspaceButton(createProjectButton, CREATE_PROJECT_BUTTON_WAS_NOT_FOUND_MSG);
         return new CreateProject();
     }
 
@@ -83,17 +99,8 @@ public class Dashboard extends BasePage {
      *
      * @return the CreateWorkspace instance
      */
-    public CreateWorkspace clickCreateWorkspaceLink() {
-
-        try {
-            wait.withTimeout(TIMEOUT, SECONDS);
-            clickWebElement(createWorkspaceLink);
-        } catch (NoSuchElementException e) {
-            LOGGER.warn(CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG, e);
-            throw new NoSuchElementException(CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG);
-        } finally {
-            wait.withTimeout(WAIT_TIME, SECONDS);
-        }
+    public CreateWorkspace clickCreateWorkspaceButton() {
+        clickOnCreateProjectOrWorkspaceButton(createWorkspaceButton, CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG);
         return new CreateWorkspace();
     }
 
@@ -160,8 +167,6 @@ public class Dashboard extends BasePage {
         return wait.until(driver1 -> driver1.findElement(locator));
     }
 
-
-
     /**
      * Method that returns the settings link given
      * the name of the projects.
@@ -227,5 +232,19 @@ public class Dashboard extends BasePage {
             return RequestManager.getRequest(endPointProfile).jsonPath().get(fieldUserName);
         }
         return value;
+    }
+
+    /**
+     * Method that clicks on Project tab.
+     */
+    public void clickProjectsTab() {
+        clickWebElement(projectsTab);
+    }
+
+    /**
+     * Method that clicks on Workspaces tab.
+     */
+    public void clickWorkspacesTab() {
+        clickWebElement(workspacesTab);
     }
 }

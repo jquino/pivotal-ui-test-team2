@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.fundacionjala.pivotal.framework.util.Constants.ELEMENT_COULD_NOT_BE_FOUND;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
-
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.getTextFieldValue;
 
 /**
  * Class that represents the main workspace page with all
@@ -46,7 +46,6 @@ public class Workspace extends BasePage {
      * Class constructor.
      */
     public Workspace() {
-
         sideBarWorkspace = new SideBarWorkspace();
         toolBarWorkspace = new ToolBarWorkspace();
     }
@@ -125,5 +124,13 @@ public class Workspace extends BasePage {
      */
     public ToolBarWorkspace getToolBarWorkspace() {
         return toolBarWorkspace;
+    }
+
+    /**
+     * Method that returns the workspace name.
+     * @return Workspace name.
+     */
+    public String getWorkspaceName() {
+        return getTextFieldValue(workspaceNameText);
     }
 }

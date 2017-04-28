@@ -41,6 +41,10 @@ public final class Constants {
 
     public static final String ELEMENT_COULD_NOT_BE_FOUND = "The element could not be found";
 
+    public static final String DASHBOARD_PAGE = "/dashboard";
+
+    public static final String RED_COLOR = "#dd7270";
+
     /**
      * Class constructor.
      */

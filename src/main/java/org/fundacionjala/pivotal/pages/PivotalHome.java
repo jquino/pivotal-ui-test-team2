@@ -13,7 +13,7 @@ import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebEle
  */
 public class PivotalHome extends BasePage {
 
-    @FindBy(css = ".btn-login")
+    @FindBy(css = ".header__lg a[href*='signin']")
     private WebElement signInLink;
 
     /**
