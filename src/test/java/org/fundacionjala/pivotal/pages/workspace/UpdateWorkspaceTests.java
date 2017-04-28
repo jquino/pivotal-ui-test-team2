@@ -1,8 +1,10 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
+import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.Login;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -51,5 +53,13 @@ public class UpdateWorkspaceTests {
     @AfterMethod
     public void cleanUp() {
         deleteWorkspace(workspaceId);
+    }
+
+    /**
+     * After class method.
+     */
+    @AfterClass
+    public void tearDown() {
+        DriverManager.getInstance().quitDriver();
     }
 }

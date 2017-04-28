@@ -3,7 +3,7 @@
 <suite name="Suite1" verbose="1" >
     <test name="Regression1">
         <classes>
-            <class name="org.fundacionjala.pivotal.pages.workspace.AddWorkSpacesTests"/>
+            <class name="org.fundacionjala.pivotal.pages.workspace.AddWorkSpaceTests"/>
         </classes>
     </test>
 </suite>
