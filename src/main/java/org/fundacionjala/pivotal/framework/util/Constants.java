@@ -23,6 +23,14 @@ public final class Constants {
 
     public static final String PROJECTS_ENDPOINT = "/projects/";
 
+    public static final String STORIES_ENDPOINT = "/projects/%d/stories";
+
+    public static final String STORY_ENDPOINT = "/projects/%d/stories/%d";
+
+    public static final String TASKS_ENDPOINT = "/projects/%d/stories/%d/tasks";
+
+    public static final String TASK_ENDPOINT = "/projects/%d/stories/%d/tasks/%d";
+
     public static final String WORKSPACES_ENDPOINT = "/my/workspaces/";
 
     public static final String ATTRIBUTE_ID = "id";

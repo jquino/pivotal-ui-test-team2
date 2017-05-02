@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -32,6 +33,10 @@ import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TYPE;
 public class Story extends BasePage {
 
     private static final Logger LOGGER = Logger.getLogger(Story.class.getName());
+    private static final String TASK_LOCATOR = "//div[.= '%s']";
+    private static final String TASK_EDIT_LOCATOR = "//textarea[.= '%s']";
+    private static final String SAVE_TASK = "button[data-aid='saveTaskButton']";
+    private static final String DELETE_TASK_BUTTON = "span[data-click-aid='delete']";
 
     /**
      * Web elements to add story.
@@ -104,6 +109,12 @@ public class Story extends BasePage {
 
     @FindBy(xpath = "//button[@data-aid='CancelButton']")
     private WebElement cancelDeleteButton;
+
+    @FindBy(css = "textarea[placeholder='Add a task']")
+    private WebElement newTaskDescriptionTextArea;
+
+    @FindBy(css = "button[data-aid='addTaskButton']")
+    private WebElement addTaskButton;
 
     private String commentMesage;
 
@@ -344,5 +355,48 @@ public class Story extends BasePage {
         assertionMap.put(LABELS, getLabel());
         assertionMap.put(COMMENT, getComment());
         return assertionMap;
+    }
+
+    /**
+     * Adds the specified task to the story.
+     * @param taskDescription the task to be added.
+     */
+    public void addTask(final String taskDescription) {
+        newTaskDescriptionTextArea.click();
+        newTaskDescriptionTextArea.clear();
+        newTaskDescriptionTextArea.sendKeys(taskDescription);
+        addTaskButton.click();
+    }
+
+    /**
+     * Verify if the task exists in the story.
+     * @param description the task to be searched.
+     * @return true if the task is found, false otherwise.
+     */
+    public boolean isThereATaskWithDescription(final String description) {
+        return !driver.findElements(By.xpath(String.format(TASK_LOCATOR, description))).isEmpty();
+    }
+
+    /**
+     * Updates the specified task.
+     * @param taskDescription the task to be updated.
+     * @param newTaskDescription the new description of the task.
+     */
+    public void updateTask(final String taskDescription, final String newTaskDescription) {
+        CommonMethods.clickWebElement(By.xpath(String.format(TASK_LOCATOR, taskDescription)));
+        WebElement taskTextArea = driver.findElement(By.xpath(String.format(TASK_EDIT_LOCATOR, taskDescription)));
+        CommonMethods.setWebElement(taskTextArea, newTaskDescription);
+        CommonMethods.clickWebElement(By.cssSelector(SAVE_TASK));
+    }
+
+    /**
+     * Deletes the specified task.
+     * @param taskDescription the task to be deleted.
+     */
+    public void deleteTask(final String taskDescription) {
+        WebElement task = driver.findElement(By.xpath(String.format(TASK_LOCATOR, taskDescription)));
+        Actions builder = new Actions(driver);
+        builder.moveToElement(task).build().perform();
+        CommonMethods.clickWebElement(By.cssSelector(DELETE_TASK_BUTTON));
     }
 }
