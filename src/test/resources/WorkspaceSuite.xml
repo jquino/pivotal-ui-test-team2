@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite1" verbose="1" >
+<suite name="WorkspaceSuite" verbose="1" >
     <test name="FunctionalTests">
         <groups>
             <run>
@@ -11,9 +11,6 @@
             <class name="org.fundacionjala.pivotal.pages.workspace.AddWorkSpaceTests"/>
             <class name="org.fundacionjala.pivotal.pages.workspace.UpdateWorkspaceTests"/>
             <class name="org.fundacionjala.pivotal.pages.workspace.DeleteWorkSpaceTests"/>
-            <class name="org.fundacionjala.pivotal.pages.task.AddTaskTests"/>
-            <class name="org.fundacionjala.pivotal.pages.task.UpdateTaskTests"/>
-            <class name="org.fundacionjala.pivotal.pages.task.DeleteTaskTests"/>
         </classes>
     </test>
 </suite>

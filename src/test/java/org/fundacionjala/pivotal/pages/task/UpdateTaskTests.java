@@ -16,10 +16,10 @@ import static org.testng.Assert.assertTrue;
  * Created by xain on 4/30/2017.
  */
 public class UpdateTaskTests {
-    private static final String PROJECT_NAME = "MyTestProject";
-    private static final String STORY_NAME = "MyTestStory";
-    private static final String TASK_DESCRIPTION = "MyNewTask";
-    private static final String NEW_TASK_DESCRIPTION = "MyNewTask-Updated";
+    private static final String PROJECT_NAME = "MyTestProject2";
+    private static final String STORY_NAME = "MyTestStory2";
+    private static final String TASK_DESCRIPTION = "MyNewTask2";
+    private static final String NEW_TASK_DESCRIPTION = "MyNewTask2-Updated";
     private int projectId;
     private Dashboard dashboard;
 

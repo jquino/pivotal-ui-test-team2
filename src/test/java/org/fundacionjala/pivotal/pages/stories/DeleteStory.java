@@ -14,8 +14,8 @@ import static org.testng.Assert.assertFalse;
  * Created by Automation on 5/4/2017.
  */
 public class DeleteStory {
-    private static final String PROJECT_NAME = "TestProject";
-    private static final String STORY_TITLE = "TestStory";
+    private static final String PROJECT_NAME = "TestProject2";
+    private static final String STORY_TITLE = "TestStory2";
     private int projectId;
     private Dashboard dashboard;
 

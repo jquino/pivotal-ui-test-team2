@@ -16,9 +16,9 @@ import static org.testng.Assert.assertFalse;
  * Created by xain on 5/1/2017.
  */
 public class DeleteTaskTests {
-    private static final String PROJECT_NAME = "MyTestProject";
-    private static final String STORY_NAME = "MyTestStory";
-    private static final String TASK_DESCRIPTION = "MyNewTask";
+    private static final String PROJECT_NAME = "MyTestProject3";
+    private static final String STORY_NAME = "MyTestStory3";
+    private static final String TASK_DESCRIPTION = "MyNewTask3";
     private int projectId;
     private Dashboard dashboard;
 

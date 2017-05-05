@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="ProjectSuite" verbose="1" >
+    <test name="FunctionalTests">
+        <groups>
+            <run>
+                <include name="Functional"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="org.fundacionjala.pivotal.pages.project.AddProjectTests"/>
+            <class name="org.fundacionjala.pivotal.pages.project.UpdateProjectTests"/>
+            <class name="org.fundacionjala.pivotal.pages.project.DeleteProjectTests"/>
+        </classes>
+    </test>
+</suite>

@@ -14,9 +14,9 @@ import static org.testng.Assert.assertTrue;
  * Created by Automation on 5/4/2017.
  */
 public class UpdateStory {
-    private static final String PROJECT_NAME = "TestProject";
-    private static final String STORY_TITLE = "TestStory";
-    private static final String UPDATED_STORY_TITLE = "UpdatedTestStory";
+    private static final String PROJECT_NAME = "TestProject3";
+    private static final String STORY_TITLE = "TestStory3";
+    private static final String UPDATED_STORY_TITLE = "UpdatedTestStory3";
     private static final String UPDATED_STORY_DESCRIPTION = "Updated short test story description.";
     private int projectId;
     private Dashboard dashboard;

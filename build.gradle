@@ -53,7 +53,7 @@ test {
     useTestNG()
 
     options {
-        suites 'src/test/resources/suite1.xml'
+        suites suite
         includeGroups groups
         listeners << 'org.fundacionjala.pivotal.testng.SuiteListener'
         listeners << 'org.fundacionjala.pivotal.testng.TestListener'
@@ -75,4 +75,5 @@ test {
     systemProperty 'proxyHost', proxyHost
     systemProperty 'proxyPort', proxyPort
     systemProperty 'groups', groups
+    systemProperty 'suite', suite
 }

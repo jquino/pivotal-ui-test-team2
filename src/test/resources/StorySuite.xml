@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="StorySuite" verbose="1" >
+    <test name="FunctionalTests">
+        <groups>
+            <run>
+                <include name="Functional"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="org.fundacionjala.pivotal.pages.stories.AddStory"/>
+            <class name="org.fundacionjala.pivotal.pages.stories.UpdateStory"/>
+            <class name="org.fundacionjala.pivotal.pages.stories.DeleteStory"/>
+        </classes>
+    </test>
+</suite>

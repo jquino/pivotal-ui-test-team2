@@ -16,9 +16,9 @@ import static org.testng.Assert.assertTrue;
  */
 public class AddTaskTests {
 
-    private static final String PROJECT_NAME = "MyTestProject";
-    private static final String STORY_NAME = "MyTestStory";
-    private static final String TASK_DESCRIPTION = "MyNewTask";
+    private static final String PROJECT_NAME = "MyTestProject1";
+    private static final String STORY_NAME = "MyTestStory1";
+    private static final String TASK_DESCRIPTION = "MyNewTask1";
     private int projectId;
     private Dashboard dashboard;
 

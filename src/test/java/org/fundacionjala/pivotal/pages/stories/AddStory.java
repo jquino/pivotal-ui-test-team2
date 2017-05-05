@@ -13,8 +13,8 @@ import static org.testng.Assert.assertTrue;
  * Created by Automation on 5/4/2017.
  */
 public class AddStory {
-    private static final String PROJECT_NAME = "TestProject";
-    private static final String STORY_TITLE = "TestStory";
+    private static final String PROJECT_NAME = "TestProject1";
+    private static final String STORY_TITLE = "TestStory1";
     private static final String STORY_TYPE = "Bug";
     private static final String STORY_DESCRIPTION = "Short test story description.";
     private int projectId;
