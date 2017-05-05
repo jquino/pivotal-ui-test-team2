@@ -22,11 +22,11 @@ public class DeleteProjectAlert extends BasePage {
 
     /**
      * Method that clicks the delete button inside the
-     * project settings.
+     * project delete container.
      *
      * @return the Dashboard instance
      */
-    public Dashboard clickDeleteBtn() {
+    public Dashboard confirmDeleteProject() {
         wait.until(ExpectedConditions.visibilityOf(deleteAlertContainer));
         clickWebElement(deleteProjectBtn);
         return new Dashboard();

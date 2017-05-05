@@ -18,7 +18,7 @@ public class DeleteWorkSpaceTests {
     /**
      * Before method.
      */
-    @BeforeMethod
+    @BeforeMethod(groups = {"Functional"})
     public void setUp() {
         // Given
         createWorkspace(WORKSPACE_NAME_TO_DELETE);
@@ -29,7 +29,7 @@ public class DeleteWorkSpaceTests {
     /**
      * Test to verify that a workspace is deleted.
      */
-    @Test
+    @Test(groups = {"Functional"})
     public void testDeleteWorkspace() {
         // When
         Workspace workspace = dashboardPage.clickOnWorkspaceName(WORKSPACE_NAME_TO_DELETE);

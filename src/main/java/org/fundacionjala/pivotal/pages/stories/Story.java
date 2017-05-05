@@ -25,7 +25,6 @@ import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
 import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TYPE;
 
 
-
 /**
  * This class is for test the creation, set and delete
  * of a story in a project of pivotal tracker.
@@ -59,10 +58,10 @@ public class Story extends BasePage {
     @FindBy(css = ".rendered_description.tracker_markup")
     private WebElement descriptionText;
 
-    @FindBy(name = "story[pending_description]")
+    @FindBy(css = "textarea[data-aid='textarea']") //old: name = story[pending_description]")
     private WebElement storyDescriptionTextField;
 
-    @FindBy(xpath = "//button[contains(.,'Done')]")
+    @FindBy(css = "button[data-aid='save']") //old: xpath = //button[contains(.,'Done')]
     private WebElement doneDescriptionButton;
 
     @FindBy(name = "label[name]")
@@ -123,9 +122,27 @@ public class Story extends BasePage {
     private static final int TIMEOUT = 45;
 
     /**
-     * Method that clicks the cancel for delete button.
+     * LA added, "position" on the desired story.
+     * @param storyTitle title of the story
+     */
+    public void clickOnExpanderStoryLA(String storyTitle) {
+        String string;
+        string = "//a[@title='" + storyTitle + "']/following-sibling::a[@class='expander undraggable']";
+        driver.findElement(By.xpath(string)).click();
+    }
+
+    /**
+     * LA does the story exist?
+     * @param storyTitle title of the story
+     * @return boolean value on the existence of a story name
+     */
+    public boolean existsStoryTitle(String storyTitle) {
+        return !driver.findElements(By.cssSelector("a[title='" + storyTitle + "']")).isEmpty();
+    }
+
+    /**
      *
-     * @return the same instance of this class
+     * @return same Story object
      */
     public Story clickOnCancelDeleteButton() {
         cancelDeleteButton.click();
@@ -154,6 +171,7 @@ public class Story extends BasePage {
 
     /**
      * Method that clicks the expander of a story.
+     *
      */
     public void clickOnExpanderStory() {
         try {
@@ -359,6 +377,7 @@ public class Story extends BasePage {
 
     /**
      * Adds the specified task to the story.
+     *
      * @param taskDescription the task to be added.
      */
     public void addTask(final String taskDescription) {
@@ -370,6 +389,7 @@ public class Story extends BasePage {
 
     /**
      * Verify if the task exists in the story.
+     *
      * @param description the task to be searched.
      * @return true if the task is found, false otherwise.
      */
@@ -379,7 +399,8 @@ public class Story extends BasePage {
 
     /**
      * Updates the specified task.
-     * @param taskDescription the task to be updated.
+     *
+     * @param taskDescription    the task to be updated.
      * @param newTaskDescription the new description of the task.
      */
     public void updateTask(final String taskDescription, final String newTaskDescription) {
@@ -391,6 +412,7 @@ public class Story extends BasePage {
 
     /**
      * Deletes the specified task.
+     *
      * @param taskDescription the task to be deleted.
      */
     public void deleteTask(final String taskDescription) {

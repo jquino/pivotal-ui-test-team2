@@ -8,11 +8,14 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
@@ -251,5 +254,32 @@ public final class CommonMethods {
     public static String getWebElementAttribute(WebElement webElement, String attribute) {
         DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getAttribute(attribute);
+    }
+
+    /**
+     *scrollIntoViewWebElement.
+     * @param webElement that requires to scroll to be visible.
+     */
+    public static void scrollIntoViewWebElement(final WebElement webElement) {
+        final String textScript = "arguments[0].scrollIntoView(true);";
+        ((JavascriptExecutor) DriverManager.getInstance().getDriver())
+                .executeScript(textScript, webElement);
+    }
+
+    /**
+     * Common method that verifies the color of the web
+     * element given.
+     *
+     * @param webElement the web element to check
+     * @return the color of the web element
+     */
+    public static String getWebElementTextFieldColor(WebElement webElement) {
+        String color = getTextFieldColor(webElement);
+        try {
+            return CommonMethods.getColorInHex(color);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        return null;
     }
 }

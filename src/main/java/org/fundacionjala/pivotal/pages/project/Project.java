@@ -4,7 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.pages.BasePage;
-import org.fundacionjala.pivotal.pages.setting.Setting;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,7 +34,7 @@ public class Project extends BasePage {
      *
      * @return the Settings instance
      */
-    public Setting clickSettingTab() {
+    public ProjectSettings clickSettingTab() {
         try {
             wait.withTimeout(TIMEOUT, TimeUnit.SECONDS);
             clickWebElement(settings);
@@ -49,7 +48,7 @@ public class Project extends BasePage {
             wait.withTimeout(WAIT_TIME, TimeUnit.SECONDS);
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
         }
-        return new Setting();
+        return new ProjectSettings();
     }
 
     /**

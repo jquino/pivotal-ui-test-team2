@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.pages.setting;
 
 import org.fundacionjala.pivotal.pages.BasePage;
+import org.fundacionjala.pivotal.pages.project.ProjectSettings;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -21,6 +22,9 @@ public class SideBarSetting extends BasePage {
     @FindBy(xpath = "//a[text()='Integrations']")
     private WebElement linkIntegrations;
 
+    @FindBy(xpath = "//a[text()='Webhooks']")
+    private WebElement linkWebHooks;
+
     @FindBy(xpath = "//a[text()='Import CSV']")
     private WebElement linkImportCSV;
 
@@ -33,8 +37,8 @@ public class SideBarSetting extends BasePage {
      *
      * @return the instance of the general settings form
      */
-    public GeneralSettingForm clickGeneralSetting() {
+    public ProjectSettings clickGeneralSetting() {
         clickWebElement(linkGeneralSettings);
-        return new GeneralSettingForm();
+        return new ProjectSettings();
     }
 }

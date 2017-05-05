@@ -4,7 +4,7 @@ import org.fundacionjala.pivotal.api.WorkspaceManager;
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.Login;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
-import org.testng.annotations.AfterGroups;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -23,7 +23,7 @@ public class AddWorkSpaceTests {
     /**
      * Before method.
      */
-    @BeforeMethod
+    @BeforeMethod(groups = {"Functional"})
     public void setUp() {
         // Given
         dashboardPage = Login.loginAsPrimaryUser();
@@ -101,9 +101,10 @@ public class AddWorkSpaceTests {
     /**
      * After groups method.
      */
-    @AfterGroups("Functional")
+    @AfterMethod(groups = {"Functional"})
     public void deleteWorkspace() {
         String workspaceId = workspace.getIdWorkspace();
         WorkspaceManager.deleteWorkspace(Integer.parseInt(workspaceId));
+        System.out.println("workspaceId: " + workspaceId);
     }
 }

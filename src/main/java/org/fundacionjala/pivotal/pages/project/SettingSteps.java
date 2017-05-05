@@ -1,0 +1,27 @@
+package org.fundacionjala.pivotal.pages.project;
+
+/**
+ * Enum class to set the setting steps.
+ */
+public enum SettingSteps {
+
+    TITLE_PROJECTS,
+    DESCRIPTION,
+    ENABLE_TASKS,
+    PUBLIC_ACCESS,
+    START_ITERATIONS_ON,
+    PROJECT_START_DATE,
+    PROJECT_TIME_ZONE,
+    ITERATION_LENGTH,
+    POINT_SCALE,
+    INITIAL_VELOCITY,
+    VELOCITY_STRATEGY,
+    NUMBER_OF_DONE_ITERATION_SHOW,
+    PLAN_CURRENT_ITERATION,
+    ALLOW_API_ACCESS,
+    ENABLE_RSS,
+    ENABLE_INCOMING_EMAIL,
+    HIDE_EMAIL_ADDRESSES,
+    BUGS_GIVEN_POINTS,
+    DATE_NAME
+}

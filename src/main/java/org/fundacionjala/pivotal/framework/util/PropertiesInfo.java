@@ -46,6 +46,10 @@ public final class PropertiesInfo {
 
     private static final String REMOTE_PLATFORM = "remotePlatform";
 
+    private static final String REMOTE_PLATFORM_VERSION = "remotePlatformVersion";
+
+    private static final String REMOTE_RESOLUTION = "remoteResolution";
+
     private static final String REMOTE_TEST_HOST_URL = "remoteTestHostUrl";
 
     private static PropertiesInfo instance;
@@ -250,5 +254,21 @@ public final class PropertiesInfo {
      */
     public String getRemoteTestHostUrl() {
         return getProperty(REMOTE_TEST_HOST_URL);
+    }
+
+    /**
+     * Method that returns the remote platform version.
+     * @return the remote platform version.
+     */
+    public String getRemotePlatformVersion() {
+        return getProperty(REMOTE_PLATFORM_VERSION);
+    }
+
+    /**
+     * Method that returns the remote platform resolution.
+     * @return the remote resolution.
+     */
+    public String getRemoteResolution() {
+        return getProperty(REMOTE_RESOLUTION);
     }
 }

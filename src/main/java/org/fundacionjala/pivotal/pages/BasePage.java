@@ -2,7 +2,8 @@ package org.fundacionjala.pivotal.pages;
 
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,11 +15,14 @@ import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
  */
 public abstract class BasePage {
 
+    @FindBy(css = "[class='tc_header_item tc_header_logo']")
+    protected WebElement pivotalLogo;
+
     protected WebDriver driver;
 
     protected WebDriverWait wait;
 
-    protected Actions action;
+    //protected Actions action;
 
     /**
      * Class constructor.
@@ -26,7 +30,6 @@ public abstract class BasePage {
     public BasePage() {
         driver = DriverManager.getInstance().getDriver();
         wait = new WebDriverWait(driver, WAIT_TIME);
-        action = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
 

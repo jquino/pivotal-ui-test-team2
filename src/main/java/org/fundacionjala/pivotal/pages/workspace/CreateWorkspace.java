@@ -3,7 +3,6 @@ package org.fundacionjala.pivotal.pages.workspace;
 import java.util.EnumMap;
 import java.util.Map;
 
-import org.fundacionjala.pivotal.framework.util.CommonMethods;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.WebElement;
@@ -12,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.getTextFieldValue;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
-import static org.fundacionjala.pivotal.framework.util.CommonMethods.getTextFieldColor;
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.getWebElementTextFieldColor;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.getWebElementAttribute;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.isElementPresent;
 
@@ -97,13 +96,7 @@ public class CreateWorkspace extends BasePage {
      * @return The color of the text field or null.
      */
     public String getWorkspaceNameTextFieldColor() {
-        String color = getTextFieldColor(workspaceNameTextField);
-        try {
-            return CommonMethods.getColorInHex(color);
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        return null;
+        return getWebElementTextFieldColor(workspaceNameTextField);
     }
 
     /**

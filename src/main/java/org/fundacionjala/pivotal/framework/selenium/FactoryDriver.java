@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriverException;
  */
 public final class FactoryDriver {
 
+    private static final String BROWSER_NOT_FOUND_MSG = "Browser not found.";
+
     /**
      * Class constructor.
      */
@@ -26,10 +28,12 @@ public final class FactoryDriver {
                 return new Chrome();
             case FIREFOX:
                 return new Firefox();
-            case REMOTE:
-                return new RemoteBrowser();
+            case BROWSERSTACK:
+                return new BrowserStack();
+            case SAUCELABS:
+                return new SauceLabs();
             default:
-                throw new WebDriverException("Browser not found : " + browser);
+                throw new WebDriverException(BROWSER_NOT_FOUND_MSG);
         }
     }
 }

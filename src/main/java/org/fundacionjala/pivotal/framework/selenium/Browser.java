@@ -5,7 +5,8 @@ package org.fundacionjala.pivotal.framework.selenium;
  * for  driver manager class.
  */
 public enum Browser {
-    FIREFOX,
     CHROME,
-    REMOTE
+    FIREFOX,
+    BROWSERSTACK,
+    SAUCELABS
 }

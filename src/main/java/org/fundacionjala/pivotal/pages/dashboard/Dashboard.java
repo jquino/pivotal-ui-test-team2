@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.pages.BasePage;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
+import org.fundacionjala.pivotal.pages.project.CreateProject;
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.setting.Setting;
 import org.fundacionjala.pivotal.pages.workspace.CreateWorkspace;
@@ -46,7 +47,7 @@ public class Dashboard extends BasePage {
     @FindBy(css = "[data-aid = 'create-workspace-button']")
     private WebElement createWorkspaceButton;
 
-    @FindBy(id = "notice")
+    @FindBy(css = "li[class='notice']")
     private WebElement deleteMessageText;
 
     @FindBy(id = "notice")
@@ -63,7 +64,6 @@ public class Dashboard extends BasePage {
 
     private final String workspaceNameLocator = "//a[text() = '%s']";
 
-    private static final int TIMEOUT = 45;
     private static final int POLLING = 5;
 
     /**
@@ -74,7 +74,7 @@ public class Dashboard extends BasePage {
      */
     private void clickOnCreateProjectOrWorkspaceButton(WebElement webElement, String errorMessage) {
         try {
-            wait.withTimeout(TIMEOUT, SECONDS);
+            wait.withTimeout(WAIT_TIME, SECONDS);
             clickWebElement(webElement);
         } catch (NoSuchElementException e) {
             LOGGER.warn(errorMessage, e);
@@ -82,6 +82,15 @@ public class Dashboard extends BasePage {
         } finally {
             wait.withTimeout(WAIT_TIME, SECONDS);
         }
+    }
+
+    /**
+     * Method that retrieves the web element when
+     * a project have been removed.
+     * @return the web element.
+     */
+    public WebElement getDeleteMessageText() {
+        return deleteMessageText;
     }
 
     /**

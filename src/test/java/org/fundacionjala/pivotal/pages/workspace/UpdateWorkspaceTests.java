@@ -24,7 +24,7 @@ public class UpdateWorkspaceTests {
     /**
      * Before method.
      */
-    @BeforeMethod
+    @BeforeMethod(groups = {"Functional"})
     public void setUp() {
         workspaceId = createWorkspace(WORKSPACE);
         dashboard = Login.loginAsPrimaryUser();
@@ -34,7 +34,7 @@ public class UpdateWorkspaceTests {
     /**
      * Verify that the name of the workspace can be updated.
      */
-    @Test
+    @Test(groups = {"Functional"})
     public void shouldUpdateWorkspaceName() {
         // When the user edits the name of the workspace
         Workspace workspace = dashboard.clickNameWorkspaceLink(WORKSPACE);
@@ -50,7 +50,7 @@ public class UpdateWorkspaceTests {
     /**
      * Cleanup method.
      */
-    @AfterMethod
+    @AfterMethod(groups = {"Functional"})
     public void cleanUp() {
         deleteWorkspace(workspaceId);
     }

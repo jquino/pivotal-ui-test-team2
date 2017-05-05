@@ -13,11 +13,12 @@ repositories {
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.3.1'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.4.0'
     compile group: 'io.rest-assured', name: 'rest-assured', version: '3.0.2'
     compile group: 'io.rest-assured', name: 'json-schema-validator', version: '3.0.2'
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
     compile group: 'org.testng', name: 'testng', version: '6.11'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.1'
 }
 
 // Checkstyle configuration
@@ -51,8 +52,18 @@ test {
 
     useTestNG()
 
+    options {
+        suites 'src/test/resources/suite1.xml'
+        includeGroups groups
+        listeners << 'org.fundacionjala.pivotal.testng.SuiteListener'
+        listeners << 'org.fundacionjala.pivotal.testng.TestListener'
+    }
+
+    scanForTestClasses false
+
     testLogging {
         events "PASSED", "STARTED", "FAILED", "SKIPPED"
+        showStandardStreams true
     }
 
     systemProperty 'email', email
@@ -62,4 +73,6 @@ test {
     systemProperty 'urlApi', urlApi
     systemProperty 'apiToken', apiToken
     systemProperty 'proxyHost', proxyHost
+    systemProperty 'proxyPort', proxyPort
+    systemProperty 'groups', groups
 }
